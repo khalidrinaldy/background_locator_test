@@ -200,10 +200,12 @@ class _MyAppState extends State<MyApp> {
         return false;
       }
     } else if (Platform.isIOS) {
-      final access = await geo.Geolocator.requestPermission();
+      var access = await geo.Geolocator.requestPermission();
       print(access);
+      // if (access == geo.LocationPermission.denied || access == geo.LocationPermission.deniedForever || geo.LocationPermission.)
+      // return false;
       if (access != geo.LocationPermission.always) {
-        await openAppSettings();
+        await geo.Geolocator.openAppSettings();
         return false;
       } else {
         return true;
